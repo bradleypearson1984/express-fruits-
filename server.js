@@ -26,6 +26,9 @@ const fruits = require('./models/fruits');
 app.use(express.urlencoded({extended: false})) // .use() is used to plug in middleware functions
 app.use(methodOverride('_method')); //this takes a special query parameter 
 // this way it knows which request needs to be overridden 
+
+app.use(express.static('public'));
+
 //gives us access to a special object called req.body
 //req.body is used to gather form input
 

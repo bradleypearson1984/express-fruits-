@@ -1,0 +1,7 @@
+li {
+    text-transform: capitalize;
+    display: flex;
+    width: 12.5rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
