@@ -72,7 +72,19 @@ app.delete('/fruits/:indexOfFruitsArray', function(req, res) {
     fruits.splice(req.params.indexOfFruitsArray, 1); //remove the item from the array
     res.redirect('/fruits'); //redirect back to index route
   });
+//UPDATE = PUT /fruits/:indexOfFruitsArray
+app.put('/fruits/:indexOfFruitsArray', function(req, res) {
+    if(req.body.readyToEat === 'on') {
+        req.body.readyToEat = true
+    } else {
+        req.body.readyToEat = false;
+    }
+    //set the fruit object to updated version
+    fruits[req.params.indexOfFruitsArray] = req.body; 
+    //redirect user to the fruits index
+    res.redirect('/fruits');
 
+});
 //CREATE - POST / fruits =take form data and create new fruit with it
 app.post('/fruits', function(req, res) {
     console.log(req.body);
