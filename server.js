@@ -56,9 +56,14 @@ app.get('/fruits', function(req, res) {
         const filteredFruits = fruits.filter(function(f) {
             return f.readyToEat === (readyToEat === 'true'); 
         });
-        res.render('index.ejs', { fruits: filteredFruits });
+        res.render('index.ejs', { 
+            fruits: filteredFruits, 
+            title: 'Index Page' });
     } else {
-        res.render('index.ejs', { fruits: fruits });
+        res.render('index.ejs', { 
+            fruits: fruits, 
+            title: 'Index Page' 
+        });
     }
 });
 
@@ -66,7 +71,9 @@ app.get('/fruits', function(req, res) {
 //fruit by filling out a form 
 
 app.get('/fruits/new', function(req, res) {
-    res.render('new.ejs');
+    res.render('new.ejs', {
+        title: 'Create a New Fruit'
+    });
 });
 
 //DELETE route DELETE/fruits/:indexOfFruitsArray
@@ -112,6 +119,7 @@ app.get('/fruits/:indexOfFruitsArray/edit', function(req, res) {
     res.render('edit.ejs', {
         fruit: fruits[req.params.indexOfFruitsArray],
         index: req.params.indexOfFruitsArray,
+        title: 'Edit ' + fruit.name,
     });
     // 2)include the fruit to edit inside the edit.ejs template
     // 3) also include the index of the fruit we're editing 
@@ -121,7 +129,10 @@ app.get('/fruits/:indexOfFruitsArray/edit', function(req, res) {
 //show  -> GET /fruits/:someUniqueIdentifier
 app.get('/fruits/:indexOfFruitsArray', function(req, res) {
     const fruit = fruits[req.params.indexOfFruitsArray];
-    res.render('show.ejs', { fruit: fruit });
+    res.render('show.ejs', { 
+        fruit: fruit, 
+        title: fruit.name + ' details',
+    });
 });
 
 
